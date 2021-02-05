@@ -28,9 +28,8 @@ class DetailRecyclerViewAdapter(
             StfalconImageViewer.Builder<PhotosetDetailItemLocal>(
                 view.context,
                 values
-            ) { view, values ->
-                val imageView: ImageView = view
-                imageView.loadDetailImageFromLink(values.getImageLink())
+            ) { view: ImageView, values ->
+                view.loadDetailImageFromLink(values.getImageLink())
             }
                 .withStartPosition(position)
                 .show(true)
@@ -44,8 +43,8 @@ class DetailRecyclerViewAdapter(
 
     }
 
-    fun addNewItem(itemsNew: List<PhotosetDetailItemLocal>) {
-        values = itemsNew
+    fun addNewItem(newItems: List<PhotosetDetailItemLocal>) {
+        values = newItems
         notifyDataSetChanged()
     }
 }

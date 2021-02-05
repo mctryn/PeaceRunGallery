@@ -56,7 +56,7 @@ class PhotosetRecyclerViewAdapter(
         notifyDataSetChanged()
     }
 
-    interface OnItemClickListener {
+    fun interface OnItemClickListener {
         fun onItemClicked(position: Int)
     }
 }

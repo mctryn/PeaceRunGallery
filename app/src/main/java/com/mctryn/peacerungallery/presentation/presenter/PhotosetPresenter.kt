@@ -2,11 +2,9 @@ package com.mctryn.peacerungallery.presentation.presenter
 
 import com.mctryn.peacerungallery.model.data.photoset.contract.PhotosetRepositoryContract
 import com.mctryn.peacerungallery.model.data.photoset.local.PhotosetItemLocal
+import com.mctryn.peacerungallery.model.data.photoset.local.PhotosetLocal
 import com.mctryn.peacerungallery.presentation.view.PhotosetView
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 import moxy.MvpPresenter
 import javax.inject.Inject
 
@@ -23,28 +21,25 @@ class PhotosetPresenter @Inject constructor(val repository: PhotosetRepositoryCo
             val photosetItemsSingle = repository.getPhotosetItems()
 
             val subscribe = photosetItemsSingle
-                .subscribe { photosetLocal, onError -> updateUi(photosetLocal.photoset) }
+                .subscribe { photosetLocal, onError -> onDataRecived(photosetLocal) }
             disposal.add(subscribe)
         } else {
             updateUi()
         }
     }
 
-    private fun updateUi(photosetResponse: List<PhotosetItemLocal>) {
-        items = photosetResponse
+    private fun onDataRecived(photosetLocal: PhotosetLocal) {
+        items = photosetLocal.photoset
         updateUi()
+        preloadImages(photosetLocal.photosetPreviewLinks)
     }
 
     private fun updateUi() {
         viewState.updateUi(items)
-        preloadImages(items)
+
     }
 
-    private fun preloadImages(photosetResponse: List<PhotosetItemLocal>) {
-        val subscribe = Observable.fromIterable(photosetResponse).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .map { viewState.cacheImage(it.getImageLink()) }
-            .subscribe()
-        disposal.add(subscribe)
+    private fun preloadImages(photosetLinks: List<String>) {
+        photosetLinks.forEach { viewState.cacheImage(it) }
     }
 }

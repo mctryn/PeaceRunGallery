@@ -8,4 +8,5 @@ import moxy.viewstate.strategy.StateStrategyType
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface DetailView : MvpView {
     fun updateUi(photoItems: List<PhotosetDetailItemLocal>)
+    fun cacheImage(imageLink: String)
 }

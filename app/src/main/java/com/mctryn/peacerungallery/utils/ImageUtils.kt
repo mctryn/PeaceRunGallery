@@ -26,3 +26,4 @@ fun ImageView.loadDetailImageFromLink(imageLink: String) {
         )
         .into(this)
 }
+
