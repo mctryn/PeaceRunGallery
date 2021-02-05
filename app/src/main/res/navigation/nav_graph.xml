@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/photosetListFragment">
+
+    <fragment
+        android:id="@+id/photosetListFragment"
+        android:name="com.mctryn.peacerungallery.ui.fragment.PhotosetListFragment"
+        android:label="PhotosetListFragment">
+        <action
+            android:id="@+id/photosetFragment_to_detailListFragment"
+            app:destination="@id/detailListFragment">
+            <argument
+                android:name="photosetId"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/detailListFragment"
+        android:name="com.mctryn.peacerungallery.ui.fragment.DetailListFragment"
+        android:label="fragment_detail_list"
+        tools:layout="@layout/fragment_detail_list">
+        <argument
+            android:name="photosetId"
+            app:argType="string" />
+    </fragment>
+</navigation>
