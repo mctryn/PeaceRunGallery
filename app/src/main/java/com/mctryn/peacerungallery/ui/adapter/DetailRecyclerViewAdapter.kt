@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mctryn.peacerungallery.R
 import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetailItemLocal
 import com.mctryn.peacerungallery.utils.loadDetailImageFromLink
+import com.stfalcon.imageviewer.StfalconImageViewer
 
 class DetailRecyclerViewAdapter(
     private var values: List<PhotosetDetailItemLocal>
@@ -23,6 +24,17 @@ class DetailRecyclerViewAdapter(
         val item = values[position]
 
         holder.imageView.loadDetailImageFromLink(item.getImageLink())
+        holder.imageView.setOnClickListener { view ->
+            StfalconImageViewer.Builder<PhotosetDetailItemLocal>(
+                view.context,
+                values
+            ) { view, values ->
+                val imageView: ImageView = view
+                imageView.loadDetailImageFromLink(values.getImageLink())
+            }
+                .withStartPosition(position)
+                .show(true)
+        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -37,3 +49,4 @@ class DetailRecyclerViewAdapter(
         notifyDataSetChanged()
     }
 }
+
