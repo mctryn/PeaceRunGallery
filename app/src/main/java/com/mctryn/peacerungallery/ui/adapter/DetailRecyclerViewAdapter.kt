@@ -10,6 +10,7 @@ import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetail
 import com.mctryn.peacerungallery.utils.loadDetailImageFromLink
 import com.stfalcon.imageviewer.StfalconImageViewer
 
+@Suppress("NAME_SHADOWING")
 class DetailRecyclerViewAdapter(
     private var values: List<PhotosetDetailItemLocal>
 ) : RecyclerView.Adapter<DetailRecyclerViewAdapter.ViewHolder>() {
@@ -26,7 +27,7 @@ class DetailRecyclerViewAdapter(
         holder.imageView.loadDetailImageFromLink(item.getImageLink())
 
         holder.imageView.setOnClickListener { view ->
-            StfalconImageViewer.Builder<PhotosetDetailItemLocal>(
+            StfalconImageViewer.Builder(
                 view.context,
                 values
             ) { view: ImageView, values -> view.loadDetailImageFromLink(values.getImageLink()) }
@@ -38,7 +39,7 @@ class DetailRecyclerViewAdapter(
     override fun getItemCount(): Int = values.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageView: ImageView = view.findViewById(R.id.imageViewDeatails)
+        val imageView: ImageView = view.findViewById(R.id.imageViewDetail)
     }
 
     fun addNewItem(newItems: List<PhotosetDetailItemLocal>) {

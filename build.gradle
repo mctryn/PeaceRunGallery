@@ -43,20 +43,18 @@ ext {
     rxAndroidVersion = '2.1.0'
     rxKotlinVersion = '2.3.0'
     dagger2Version = '2.29.1'
-    roomDBVersion = '1.1.1'
     gsonVersion = '2.7'
     retrofitVersion = '2.4.0'
     glideVersion = '4.8.0'
     glideOkhttpIntegrationVersion = '1.5.0'
     photoViewVersion = '2.0.0'
-    nav_version = "2.3.3"
-    stfalcon_version = "1.0.1"
+    navVersion = "2.3.3"
+    stfalconVersion = "1.0.1"
 
 
     //test dependencies
-    expressoVersion = '3.0.1'
-    mockitoVersion = '2.8.9'
-    testRunnerVersion = '1.0.1'
+    expressoVersion = '3.3.0'
+    testRunnerVersion = '1.1.2'
     jUnitVersion = '4.12'
 
 }

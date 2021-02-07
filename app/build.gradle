@@ -76,16 +76,13 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger2Version"
 
     //nav dependencies
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
 
-    implementation "com.github.stfalcon:stfalcon-imageviewer:$stfalcon_version"
+    implementation "com.github.stfalcon:stfalcon-imageviewer:$stfalconVersion"
 
-
-
-
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation "junit:junit:$jUnitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$testRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$expressoVersion"
 }
 
