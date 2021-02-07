@@ -1,9 +1,7 @@
 package com.mctryn.peacerungallery.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mctryn.peacerungallery.R
@@ -26,6 +24,7 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
     private val presenter by moxyPresenter { presenterProvider.get() }
 
     private val columnCount = 1
+    private lateinit var photosetId :String
     private var items: List<PhotosetDetailItemLocal> = ArrayList()
     private lateinit var recyclerViewAdapter: DetailRecyclerViewAdapter
 
@@ -36,7 +35,13 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
     ): View? {
         val view = inflater.inflate(R.layout.fragment_detail_list, container, false)
         initRecyclerView(view)
+        setHasOptionsMenu(true)
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun initRecyclerView(view: View) {
@@ -52,7 +57,7 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val fromBundle = DetailListFragmentArgs.fromBundle(requireArguments())
-        val photosetId = fromBundle.photosetId
+        photosetId = fromBundle.photosetId
         presenter.getPhotos(photosetId)
     }
 
@@ -63,5 +68,14 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
 
     override fun cacheImage(imageLink: String) {
         preloadImage(imageLink)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_refresh) {
+            presenter.getPhotos(photosetId)
+            return true
+        } else {
+            return super.onOptionsItemSelected(item)
+        }
     }
 }

@@ -1,9 +1,7 @@
 package com.mctryn.peacerungallery.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +15,7 @@ import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 import javax.inject.Inject
 import javax.inject.Provider
+
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 class PhotosetListFragment : BaseFragment(R.layout.fragment_photoset_list), PhotosetView {
@@ -37,6 +36,7 @@ class PhotosetListFragment : BaseFragment(R.layout.fragment_photoset_list), Phot
     ): View? {
         val view = inflater.inflate(R.layout.fragment_photoset_list, container, false)
         initRecyclerView(view)
+        setHasOptionsMenu(true)
         return view
     }
 
@@ -76,5 +76,19 @@ class PhotosetListFragment : BaseFragment(R.layout.fragment_photoset_list), Phot
             PhotosetListFragmentDirections.photosetFragmentToDetailListFragment(photosetId)
 
         findNavController().navigate(action)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_refresh) {
+            presenter.getItems()
+            return true
+        } else {
+            return super.onOptionsItemSelected(item)
+        }
     }
 }
