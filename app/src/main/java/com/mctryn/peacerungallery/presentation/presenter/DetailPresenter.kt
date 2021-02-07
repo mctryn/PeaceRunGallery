@@ -16,20 +16,25 @@ class DetailPresenter @Inject constructor(private val repository: PhotosetDetail
     private var disposal: CompositeDisposable = CompositeDisposable()
 
     fun getPhotos(photosetId: String) {
-        if (items.size.equals(0)) {
+        if (items.isEmpty()) {
             val photoItemsSingle = repository.getPhotoItems(photosetId)
 
             val subscribe = photoItemsSingle.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe { photosetDetailLocal, onError -> onDataRecived(photosetDetailLocal) }
+                .subscribe { photosetDetailLocal, onError ->
+                    if (onError == null) {
+                        onDataReceived(photosetDetailLocal)
+                    } else {
+                        onErrorOccurred(onError)
+                    }
+                }
             disposal.add(subscribe)
         } else {
             updateUi()
         }
-
     }
 
-    private fun onDataRecived(photosetDetail: PhotosetDetailLocal) {
+    private fun onDataReceived(photosetDetail: PhotosetDetailLocal) {
         items = photosetDetail.photosetDetailItems
         updateUi()
         preloadImages(photosetDetail.photosetDetailLinks)
@@ -41,5 +46,14 @@ class DetailPresenter @Inject constructor(private val repository: PhotosetDetail
 
     private fun preloadImages(photosetLinks: List<String>) {
         photosetLinks.forEach { viewState.cacheImage(it) }
+    }
+
+    private fun onErrorOccurred(error: Throwable) {
+        viewState.onErrorOccurred(error.localizedMessage!!)
+    }
+
+    override fun onDestroy() {
+        disposal.dispose()
+        super.onDestroy()
     }
 }

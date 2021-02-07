@@ -8,27 +8,35 @@ import io.reactivex.disposables.CompositeDisposable
 import moxy.MvpPresenter
 import javax.inject.Inject
 
-@Suppress("UNCHECKED_CAST")
-class PhotosetPresenter @Inject constructor(val repository: PhotosetRepositoryContract) :
+class PhotosetPresenter @Inject constructor(private val repository: PhotosetRepositoryContract) :
     MvpPresenter<PhotosetView>() {
     private var items: List<PhotosetItemLocal> = ArrayList()
     private var disposal: CompositeDisposable = CompositeDisposable()
 
 
     fun getItems() {
-
-        if (items.size.equals(0)) {
+        if (items.isEmpty()) {
             val photosetItemsSingle = repository.getPhotosetItems()
 
             val subscribe = photosetItemsSingle
-                .subscribe { photosetLocal, onError -> onDataRecived(photosetLocal) }
+                .subscribe { photosetLocal, onError ->
+                    if (onError == null) {
+                        onDataReceived(photosetLocal)
+                    } else {
+                        onErrorOccurred(onError)
+                    }
+                }
             disposal.add(subscribe)
         } else {
             updateUi()
         }
     }
 
-    private fun onDataRecived(photosetLocal: PhotosetLocal) {
+    private fun onErrorOccurred(error: Throwable) {
+        viewState.onErrorOccurred(error.localizedMessage!!)
+    }
+
+    private fun onDataReceived(photosetLocal: PhotosetLocal) {
         items = photosetLocal.photoset
         updateUi()
         preloadImages(photosetLocal.photosetPreviewLinks)
@@ -36,10 +44,14 @@ class PhotosetPresenter @Inject constructor(val repository: PhotosetRepositoryCo
 
     private fun updateUi() {
         viewState.updateUi(items)
-
     }
 
     private fun preloadImages(photosetLinks: List<String>) {
         photosetLinks.forEach { viewState.cacheImage(it) }
+    }
+
+    override fun onDestroy() {
+        disposal.dispose()
+        super.onDestroy()
     }
 }

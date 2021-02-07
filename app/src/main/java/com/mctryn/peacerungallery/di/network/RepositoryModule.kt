@@ -16,7 +16,4 @@ interface RepositoryModule {
     @Binds
     fun bindPhotosetDetailsRepository(photosetDetailsRepository: PhotosetDetailRepository): PhotosetDetailsRepositoryContract
 
-//    @Binds
-//    fun bindPhotosetMappes(photosetMapper: PhotosetMapper): PhotosetMapper
-
 }

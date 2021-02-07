@@ -12,6 +12,6 @@ interface FragmentModule {
     fun contributePhotosetListFragment(): PhotosetListFragment
 
     @ContributesAndroidInjector
-    fun contributeDetailListFragmentPhotosetListFragment(): DetailListFragment
+    fun contributeDetailListFragment(): DetailListFragment
 
 }

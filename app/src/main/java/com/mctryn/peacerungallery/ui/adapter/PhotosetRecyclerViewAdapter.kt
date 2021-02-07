@@ -33,7 +33,7 @@ class PhotosetRecyclerViewAdapter(
 
     inner class ViewHolder(
         view: View,
-        val onItemClickListener: OnItemClickListener
+        private val onItemClickListener: OnItemClickListener
     ) : RecyclerView.ViewHolder(view), View.OnClickListener {
         val titleTextView: TextView = view.findViewById(R.id.titleTextView)
         val imageView: ImageView = view.findViewById(R.id.imageView)

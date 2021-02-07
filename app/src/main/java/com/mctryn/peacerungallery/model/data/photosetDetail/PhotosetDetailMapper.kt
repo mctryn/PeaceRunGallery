@@ -9,7 +9,7 @@ class PhotosetDetailMapper @Inject constructor() {
         entities
             .map { toPhoto(it) }
 
-    fun toPhoto(entity: PhotoItem): PhotosetDetailItemLocal = PhotosetDetailItemLocal(
+    private fun toPhoto(entity: PhotoItem): PhotosetDetailItemLocal = PhotosetDetailItemLocal(
         entity.server!!,
         entity.id!!,
         entity.secret!!

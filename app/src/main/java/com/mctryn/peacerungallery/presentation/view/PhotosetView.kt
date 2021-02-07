@@ -9,4 +9,5 @@ import moxy.viewstate.strategy.StateStrategyType
 interface PhotosetView : MvpView {
     fun updateUi(photosetItems: List<PhotosetItemLocal>)
     fun cacheImage(imageLink: String)
+    fun onErrorOccurred(error: String)
 }

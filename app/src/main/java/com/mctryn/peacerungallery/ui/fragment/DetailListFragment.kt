@@ -2,6 +2,7 @@ package com.mctryn.peacerungallery.ui.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mctryn.peacerungallery.R
@@ -39,11 +40,6 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
         return view
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
     private fun initRecyclerView(view: View) {
         if (view is RecyclerView) {
             with(view) {
@@ -70,12 +66,21 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
         preloadImage(imageLink)
     }
 
+    override fun onErrorOccurred(error: String) {
+        Toast.makeText(this.context, error, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_refresh) {
+        return if (item.itemId == R.id.action_refresh) {
             presenter.getPhotos(photosetId)
-            return true
+            true
         } else {
-            return super.onOptionsItemSelected(item)
+            super.onOptionsItemSelected(item)
         }
     }
 }

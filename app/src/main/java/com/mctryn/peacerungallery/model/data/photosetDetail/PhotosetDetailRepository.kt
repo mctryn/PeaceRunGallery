@@ -7,8 +7,9 @@ import com.mctryn.peacerungallery.model.data.photosetDetail.remote.PhotoItem
 import io.reactivex.Single
 import javax.inject.Inject
 
+@Suppress("UNCHECKED_CAST")
 class PhotosetDetailRepository @Inject constructor(
-    val flickrApi: FlickrApi,
+    private val flickrApi: FlickrApi,
     val photosetDetailMapper: PhotosetDetailMapper
 ) :
     PhotosetDetailsRepositoryContract {

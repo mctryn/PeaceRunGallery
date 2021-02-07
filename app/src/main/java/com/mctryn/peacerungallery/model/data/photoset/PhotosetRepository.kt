@@ -12,8 +12,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+@Suppress("UNCHECKED_CAST")
 class PhotosetRepository @Inject constructor(
-    val flickrApi: FlickrApi,
+    private val flickrApi: FlickrApi,
     val photosetMapper: PhotosetMapper
 ) :
     PhotosetRepositoryContract {

@@ -2,6 +2,7 @@ package com.mctryn.peacerungallery.ui.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -64,6 +65,10 @@ class PhotosetListFragment : BaseFragment(R.layout.fragment_photoset_list), Phot
         preloadImage(imageLink)
     }
 
+    override fun onErrorOccurred(error: String) {
+        Toast.makeText(this.context, error, Toast.LENGTH_LONG).show()
+    }
+
     private val onItemClickListener: PhotosetRecyclerViewAdapter.OnItemClickListener =
         PhotosetRecyclerViewAdapter.OnItemClickListener {
             navigateToDetailsFragment(it)
@@ -84,11 +89,11 @@ class PhotosetListFragment : BaseFragment(R.layout.fragment_photoset_list), Phot
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_refresh) {
+        return if (item.itemId == R.id.action_refresh) {
             presenter.getItems()
-            return true
+            true
         } else {
-            return super.onOptionsItemSelected(item)
+            super.onOptionsItemSelected(item)
         }
     }
 }

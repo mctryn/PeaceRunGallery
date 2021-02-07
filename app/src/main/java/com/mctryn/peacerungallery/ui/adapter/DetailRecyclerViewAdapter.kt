@@ -24,13 +24,12 @@ class DetailRecyclerViewAdapter(
         val item = values[position]
 
         holder.imageView.loadDetailImageFromLink(item.getImageLink())
+
         holder.imageView.setOnClickListener { view ->
             StfalconImageViewer.Builder<PhotosetDetailItemLocal>(
                 view.context,
                 values
-            ) { view: ImageView, values ->
-                view.loadDetailImageFromLink(values.getImageLink())
-            }
+            ) { view: ImageView, values -> view.loadDetailImageFromLink(values.getImageLink()) }
                 .withStartPosition(position)
                 .show(true)
         }
@@ -40,7 +39,6 @@ class DetailRecyclerViewAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.imageViewDeatails)
-
     }
 
     fun addNewItem(newItems: List<PhotosetDetailItemLocal>) {
