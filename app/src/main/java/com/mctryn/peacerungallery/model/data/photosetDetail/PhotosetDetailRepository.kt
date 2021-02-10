@@ -5,6 +5,8 @@ import com.mctryn.peacerungallery.model.data.photosetDetail.contarct.PhotosetDet
 import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetailLocal
 import com.mctryn.peacerungallery.model.data.photosetDetail.remote.PhotoItem
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
@@ -18,5 +20,7 @@ class PhotosetDetailRepository @Inject constructor(
         return flickrApi.getPhotos(photosetId)
             .map { photosetDetailMapper(it.photoset?.photo as List<PhotoItem>) }
             .map { PhotosetDetailLocal(it) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
     }
 }

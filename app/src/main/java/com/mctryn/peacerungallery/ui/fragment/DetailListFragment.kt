@@ -2,14 +2,14 @@ package com.mctryn.peacerungallery.ui.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mctryn.peacerungallery.R
-import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetailItemLocal
+import com.mctryn.peacerungallery.model.data.ImageLink
 import com.mctryn.peacerungallery.presentation.presenter.DetailPresenter
 import com.mctryn.peacerungallery.presentation.view.DetailView
 import com.mctryn.peacerungallery.ui.adapter.DetailRecyclerViewAdapter
+import com.mctryn.peacerungallery.ui.fragment.base.BaseFragment
 import moxy.ktx.moxyPresenter
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
@@ -26,7 +26,7 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
 
     private val columnCount = 1
     private lateinit var photosetId :String
-    private var items: List<PhotosetDetailItemLocal> = ArrayList()
+    private var items: List<ImageLink> = ArrayList()
     private lateinit var recyclerViewAdapter: DetailRecyclerViewAdapter
 
     override fun onCreateView(
@@ -57,17 +57,9 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
         presenter.getPhotos(photosetId)
     }
 
-    override fun updateUi(photoItems: List<PhotosetDetailItemLocal>) {
+    override fun updateUi(photoItems: List<ImageLink>) {
         items = photoItems
         recyclerViewAdapter.addNewItem(photoItems)
-    }
-
-    override fun cacheImage(imageLink: String) {
-        preloadImage(imageLink)
-    }
-
-    override fun onErrorOccurred(error: String) {
-        Toast.makeText(this.context, error, Toast.LENGTH_LONG).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

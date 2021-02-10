@@ -1,6 +1,6 @@
 package com.mctryn.peacerungallery.model.data.photosetDetail.local
 
-import com.mctryn.peacerungallery.model.data.ItemHasLink
+import com.mctryn.peacerungallery.model.data.ImageLink
 
 data class PhotosetDetailLocal(
     val photosetDetailItems: List<PhotosetDetailItemLocal>
@@ -12,4 +12,4 @@ data class PhotosetDetailItemLocal(
     val server: String,
     val id: String,
     val secret: String,
-) : ItemHasLink(id, server, secret)
+) : ImageLink(id, server, secret)

@@ -2,15 +2,15 @@ package com.mctryn.peacerungallery.ui.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mctryn.peacerungallery.R
-import com.mctryn.peacerungallery.model.data.photoset.local.PhotosetItemLocal
+import com.mctryn.peacerungallery.model.data.ImageLink
 import com.mctryn.peacerungallery.presentation.presenter.PhotosetPresenter
 import com.mctryn.peacerungallery.presentation.view.PhotosetView
 import com.mctryn.peacerungallery.ui.adapter.PhotosetRecyclerViewAdapter
+import com.mctryn.peacerungallery.ui.fragment.base.BaseFragment
 import moxy.ktx.moxyPresenter
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
@@ -27,7 +27,7 @@ class PhotosetListFragment : BaseFragment(R.layout.fragment_photoset_list), Phot
     private val presenter by moxyPresenter { presenterProvider.get() }
 
     private val columnCount = 2
-    private var items: List<PhotosetItemLocal> = ArrayList()
+    private var items: List<ImageLink> = ArrayList()
     private lateinit var recyclerViewAdapter: PhotosetRecyclerViewAdapter
 
     override fun onCreateView(
@@ -56,17 +56,9 @@ class PhotosetListFragment : BaseFragment(R.layout.fragment_photoset_list), Phot
         presenter.getItems()
     }
 
-    override fun updateUi(photosetItems: List<PhotosetItemLocal>) {
+    override fun updateUi(photosetItems: List<ImageLink>) {
         items = photosetItems
         recyclerViewAdapter.addNewItem(items)
-    }
-
-    override fun cacheImage(imageLink: String) {
-        preloadImage(imageLink)
-    }
-
-    override fun onErrorOccurred(error: String) {
-        Toast.makeText(this.context, error, Toast.LENGTH_LONG).show()
     }
 
     private val onItemClickListener: PhotosetRecyclerViewAdapter.OnItemClickListener =
@@ -76,7 +68,7 @@ class PhotosetListFragment : BaseFragment(R.layout.fragment_photoset_list), Phot
 
 
     private fun navigateToDetailsFragment(id: Int) {
-        val photosetId = items[id].id
+        val photosetId = items[id].previewPhotosetId
         val action =
             PhotosetListFragmentDirections.photosetFragmentToDetailListFragment(photosetId)
 

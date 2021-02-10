@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.mctryn.peacerungallery.R
+import com.mctryn.peacerungallery.model.data.ImageLink
 import com.mctryn.peacerungallery.model.data.photoset.local.PhotosetItemLocal
 import com.mctryn.peacerungallery.utils.loadImageFromLink
 
 class PhotosetRecyclerViewAdapter(
-    private var values: List<PhotosetItemLocal>,
+    private var values: List<ImageLink>,
     private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<PhotosetRecyclerViewAdapter.ViewHolder>() {
 
@@ -25,7 +27,9 @@ class PhotosetRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
 
-        holder.titleTextView.text = item.title
+        val photosetItemLocal = item as PhotosetItemLocal
+
+        holder.titleTextView.text = photosetItemLocal.title
         holder.imageView.loadImageFromLink(item.getImageLink())
     }
 
@@ -51,7 +55,7 @@ class PhotosetRecyclerViewAdapter(
         }
     }
 
-    fun addNewItem(newItems: List<PhotosetItemLocal>) {
+    fun addNewItem(newItems: List<ImageLink>) {
         values = newItems
         notifyDataSetChanged()
     }

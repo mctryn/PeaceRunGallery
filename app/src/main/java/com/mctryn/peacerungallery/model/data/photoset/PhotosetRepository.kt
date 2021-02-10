@@ -22,5 +22,7 @@ class PhotosetRepository @Inject constructor(
             .subscribeOn(Schedulers.io())
             .map { photosetMapper(it.photosets?.photoset as List<PhotosetItem>) }
             .map { PhotosetLocal(it) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
     }
 }

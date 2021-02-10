@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.mctryn.peacerungallery.R
+import com.mctryn.peacerungallery.model.data.ImageLink
 import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetailItemLocal
 import com.mctryn.peacerungallery.utils.loadDetailImageFromLink
 import com.stfalcon.imageviewer.StfalconImageViewer
 
 @Suppress("NAME_SHADOWING")
 class DetailRecyclerViewAdapter(
-    private var values: List<PhotosetDetailItemLocal>
+    private var values: List<ImageLink>
 ) : RecyclerView.Adapter<DetailRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,7 +43,7 @@ class DetailRecyclerViewAdapter(
         val imageView: ImageView = view.findViewById(R.id.imageViewDetail)
     }
 
-    fun addNewItem(newItems: List<PhotosetDetailItemLocal>) {
+    fun addNewItem(newItems: List<ImageLink>) {
         values = newItems
         notifyDataSetChanged()
     }
