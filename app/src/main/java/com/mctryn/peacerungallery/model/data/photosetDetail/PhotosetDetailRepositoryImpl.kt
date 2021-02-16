@@ -20,7 +20,6 @@ class PhotosetDetailRepositoryImpl @Inject constructor(
         return flickrApi.getPhotos(photosetId)
             .map { photosetDetailMapper(it.photoset?.photo as List<PhotoItem>) }
             .map { PhotosetDetailLocal(it) }
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
     }
 }

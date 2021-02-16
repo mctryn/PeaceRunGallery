@@ -18,7 +18,6 @@ class PhotosetRepositoryImpl @Inject constructor(
 
     override fun getPhotosetItems(): Single<PhotosetLocal> {
         return flickrApi.getPhotoSetItems()
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .map { photosetMapper(it.photosets?.photoset as List<PhotosetItem>) }
             .map { PhotosetLocal(it) }

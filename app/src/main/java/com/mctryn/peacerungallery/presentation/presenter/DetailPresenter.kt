@@ -4,6 +4,7 @@ import com.mctryn.peacerungallery.model.data.photosetDetail.contarct.PhotosetDet
 import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetailLocal
 import com.mctryn.peacerungallery.presentation.presenter.base.BasePresenter
 import com.mctryn.peacerungallery.presentation.view.DetailView
+import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class DetailPresenter @Inject constructor(private val repository: PhotosetDetailsRepository) :
@@ -13,7 +14,7 @@ class DetailPresenter @Inject constructor(private val repository: PhotosetDetail
         if (items.isEmpty()) {
             val photoItemsSingle = repository.getPhotoItems(photosetId)
 
-            val subscribe = photoItemsSingle
+            val subscribe = photoItemsSingle.observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ photosetDetailLocal ->
                     onDataReceived(photosetDetailLocal)
                 }, { onError ->
