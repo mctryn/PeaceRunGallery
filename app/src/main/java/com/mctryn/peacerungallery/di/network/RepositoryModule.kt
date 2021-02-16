@@ -1,9 +1,9 @@
 package com.mctryn.peacerungallery.di.network
 
-import com.mctryn.peacerungallery.model.data.photoset.PhotosetRepository
-import com.mctryn.peacerungallery.model.data.photoset.contract.PhotosetRepositoryContract
-import com.mctryn.peacerungallery.model.data.photosetDetail.PhotosetDetailRepository
-import com.mctryn.peacerungallery.model.data.photosetDetail.contarct.PhotosetDetailsRepositoryContract
+import com.mctryn.peacerungallery.model.data.photoset.PhotosetRepositoryImpl
+import com.mctryn.peacerungallery.model.data.photoset.contract.PhotosetRepository
+import com.mctryn.peacerungallery.model.data.photosetDetail.PhotosetDetailRepositoryImpl
+import com.mctryn.peacerungallery.model.data.photosetDetail.contarct.PhotosetDetailsRepository
 import dagger.Binds
 import dagger.Module
 
@@ -11,9 +11,9 @@ import dagger.Module
 interface RepositoryModule {
 
     @Binds
-    fun bindPhotosetRepository(photosetRepository: PhotosetRepository): PhotosetRepositoryContract
+    fun bindPhotosetRepository(photosetRepository: PhotosetRepositoryImpl): PhotosetRepository
 
     @Binds
-    fun bindPhotosetDetailsRepository(photosetDetailsRepository: PhotosetDetailRepository): PhotosetDetailsRepositoryContract
+    fun bindPhotosetDetailsRepository(photosetDetailsRepository: PhotosetDetailRepositoryImpl): PhotosetDetailsRepository
 
 }

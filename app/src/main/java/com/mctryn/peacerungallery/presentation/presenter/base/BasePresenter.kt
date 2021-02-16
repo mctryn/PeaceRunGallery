@@ -2,7 +2,10 @@ package com.mctryn.peacerungallery.presentation.presenter.base
 
 import com.mctryn.peacerungallery.model.data.ImageLink
 import com.mctryn.peacerungallery.presentation.view.BaseView
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import moxy.MvpPresenter
 
 abstract class BasePresenter<View : BaseView> : MvpPresenter<View>() {
@@ -12,10 +15,6 @@ abstract class BasePresenter<View : BaseView> : MvpPresenter<View>() {
 
     protected fun updateUi() {
         viewState.updateUi(items)
-    }
-
-    protected fun preloadImages(photosetLinks: List<String>) {
-        photosetLinks.forEach { viewState.cacheImage(it) }
     }
 
     protected fun onErrorOccurred(error: Throwable) {

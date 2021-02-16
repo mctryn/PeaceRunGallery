@@ -16,20 +16,6 @@ abstract class BaseFragment(fragmentResId: Int) : MvpAppCompatFragment(fragmentR
         AndroidSupportInjection.inject(this)
     }
 
-    fun preloadImage(imageLink: String) {
-        Glide.with(this)
-            .load(imageLink)
-            .apply(
-                RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-            )
-            .preload()
-    }
-
-    override fun cacheImage(imageLink: String) {
-        preloadImage(imageLink)
-    }
-
     override fun onErrorOccurred(error: String) {
         Toast.makeText(this.context, error, Toast.LENGTH_LONG).show()
     }

@@ -8,6 +8,5 @@ import moxy.viewstate.strategy.StateStrategyType
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface BaseView : MvpView {
     fun updateUi(photoItems: List<ImageLink>)
-    fun cacheImage(imageLink: String)
     fun onErrorOccurred(error: String)
 }

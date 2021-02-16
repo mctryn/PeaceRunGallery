@@ -3,6 +3,6 @@ package com.mctryn.peacerungallery.model.data.photoset.contract
 import com.mctryn.peacerungallery.model.data.photoset.local.PhotosetLocal
 import io.reactivex.Single
 
-interface PhotosetRepositoryContract {
+interface PhotosetRepository {
     fun getPhotosetItems(): Single<PhotosetLocal>
 }

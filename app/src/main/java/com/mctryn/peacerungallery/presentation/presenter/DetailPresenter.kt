@@ -1,12 +1,12 @@
 package com.mctryn.peacerungallery.presentation.presenter
 
-import com.mctryn.peacerungallery.model.data.photosetDetail.contarct.PhotosetDetailsRepositoryContract
+import com.mctryn.peacerungallery.model.data.photosetDetail.contarct.PhotosetDetailsRepository
 import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetailLocal
 import com.mctryn.peacerungallery.presentation.presenter.base.BasePresenter
 import com.mctryn.peacerungallery.presentation.view.DetailView
 import javax.inject.Inject
 
-class DetailPresenter @Inject constructor(private val repository: PhotosetDetailsRepositoryContract) :
+class DetailPresenter @Inject constructor(private val repository: PhotosetDetailsRepository) :
     BasePresenter<DetailView>() {
 
     fun getPhotos(photosetId: String) {
@@ -28,6 +28,5 @@ class DetailPresenter @Inject constructor(private val repository: PhotosetDetail
     protected fun onDataReceived(photosetDetail: PhotosetDetailLocal) {
         items = photosetDetail.photosetDetailItems
         updateUi()
-        preloadImages(photosetDetail.photosetDetailLinks)
     }
 }
