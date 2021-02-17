@@ -22,12 +22,12 @@ class PhotosetPresenter @Inject constructor(private val repository: PhotosetRepo
                 })
             super.disposal.add(subscribe)
         } else {
-            updateUi()
+            updateUi(items)
         }
     }
 
-    private fun onDataReceived(photosetLocal: PhotosetLocal) {
-        items = photosetLocal.photoset
-        updateUi()
+    private fun onDataReceived(itemList: PhotosetLocal) {
+        onDataReceived(itemList.photoset, itemList.photosetLinks)
     }
+
 }

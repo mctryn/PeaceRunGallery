@@ -18,8 +18,8 @@ class PhotosetDetailRepositoryImpl @Inject constructor(
 
     override fun getPhotoItems(photosetId: String): Single<PhotosetDetailLocal> {
         return flickrApi.getPhotos(photosetId)
+            .subscribeOn(Schedulers.io())
             .map { photosetDetailMapper(it.photoset?.photo as List<PhotoItem>) }
             .map { PhotosetDetailLocal(it) }
-            .subscribeOn(Schedulers.io())
     }
 }

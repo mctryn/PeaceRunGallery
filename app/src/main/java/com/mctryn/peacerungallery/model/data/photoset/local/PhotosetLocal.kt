@@ -5,7 +5,7 @@ import com.mctryn.peacerungallery.model.data.ImageLink
 data class PhotosetLocal(
     val photoset: List<PhotosetItemLocal>,
 ) {
-    val photosetPreviewLinks: List<String> = photoset.map { item -> item.getImageLink() }
+    val photosetLinks: List<String> = photoset.map { item -> item.getImageLink() }
 }
 
 data class PhotosetItemLocal(

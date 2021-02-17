@@ -22,12 +22,11 @@ class DetailPresenter @Inject constructor(private val repository: PhotosetDetail
                 })
             super.disposal.add(subscribe)
         } else {
-            updateUi()
+            updateUi(items)
         }
     }
 
-    protected fun onDataReceived(photosetDetail: PhotosetDetailLocal) {
-        items = photosetDetail.photosetDetailItems
-        updateUi()
+    private fun onDataReceived(itemList: PhotosetDetailLocal) {
+        onDataReceived(itemList.photosetDetailItems, itemList.photosetDetailLinks)
     }
 }

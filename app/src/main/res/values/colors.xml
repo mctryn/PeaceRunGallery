@@ -10,4 +10,5 @@
     <color name="light_blue_900">#FF01579B</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="semi_opaque_black">#99000000</color>
+    <color name="placeholder_gray">#48B8A09F</color>
 </resources>

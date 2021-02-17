@@ -9,4 +9,5 @@ import moxy.viewstate.strategy.StateStrategyType
 interface BaseView : MvpView {
     fun updateUi(photoItems: List<ImageLink>)
     fun onErrorOccurred(error: String)
+    fun preloadImage(link: String)
 }
