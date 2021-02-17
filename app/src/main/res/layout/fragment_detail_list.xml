@@ -6,8 +6,8 @@
     android:name="com.mctryn.peacerungallery.ui.fragment.DetailListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
+    android:layout_marginLeft="@dimen/layout_margin"
+    android:layout_marginRight="@dimen/layout_margin"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.fragment.DetailListFragment"
     tools:listitem="@layout/fragment_detail_list_card" />
