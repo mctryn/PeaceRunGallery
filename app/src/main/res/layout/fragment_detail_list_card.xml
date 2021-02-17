@@ -10,9 +10,9 @@
     <ImageView
         android:id="@+id/imageViewDetail"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_weight="1"
-        app:srcCompat="@android:drawable/alert_light_frame"
-        android:contentDescription="@string/image" />
+        android:layout_height="100dp"
+        android:contentDescription="@string/image"
+        android:scaleType="fitXY"
+        app:srcCompat="@android:drawable/alert_light_frame" />
 
 </androidx.cardview.widget.CardView>

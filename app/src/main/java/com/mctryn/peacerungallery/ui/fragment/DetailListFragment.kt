@@ -24,7 +24,7 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
 
     private val presenter by moxyPresenter { presenterProvider.get() }
 
-    private val columnCount = 1
+    private val columnCount = 3
     private lateinit var photosetId :String
     private var items: List<ImageLink> = ArrayList()
     private lateinit var recyclerViewAdapter: DetailRecyclerViewAdapter
