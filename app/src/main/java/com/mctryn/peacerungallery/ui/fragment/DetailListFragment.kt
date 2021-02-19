@@ -51,7 +51,6 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
     private fun initRecyclerView(view: View) {
         if (view is RecyclerView) {
             with(view) {
-//                layoutManager = GridLayoutManager(context, columnCount)
                 layoutManager = GridAutoFitLayoutManager(context, columnWidth)
                 recyclerViewAdapter = DetailRecyclerViewAdapter(items)
                 adapter = recyclerViewAdapter
