@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.mctryn.peacerungallery.R
 import com.mctryn.peacerungallery.model.data.ImageLink
 import com.mctryn.peacerungallery.model.data.photoset.local.PhotosetItemLocal

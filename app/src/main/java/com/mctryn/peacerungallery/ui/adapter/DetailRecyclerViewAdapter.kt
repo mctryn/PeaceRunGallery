@@ -7,7 +7,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.mctryn.peacerungallery.R
 import com.mctryn.peacerungallery.model.data.ImageLink
-import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetailItemLocal
 import com.mctryn.peacerungallery.utils.loadDetailImageFromLink
 import com.stfalcon.imageviewer.StfalconImageViewer
 

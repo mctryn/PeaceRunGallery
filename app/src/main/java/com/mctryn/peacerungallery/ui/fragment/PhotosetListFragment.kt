@@ -3,7 +3,6 @@ package com.mctryn.peacerungallery.ui.fragment
 import android.os.Bundle
 import android.view.*
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mctryn.peacerungallery.R
 import com.mctryn.peacerungallery.databinding.FragmentPhotosetListBinding

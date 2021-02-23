@@ -2,14 +2,9 @@ package com.mctryn.peacerungallery.ui.fragment
 
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.doOnNextLayout
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mctryn.peacerungallery.R
 import com.mctryn.peacerungallery.databinding.FragmentDetailListBinding
-import com.mctryn.peacerungallery.databinding.FragmentPhotosetListBinding
 import com.mctryn.peacerungallery.model.data.ImageLink
 import com.mctryn.peacerungallery.presentation.presenter.DetailPresenter
 import com.mctryn.peacerungallery.presentation.view.DetailView
@@ -63,7 +58,7 @@ class DetailListFragment : BaseFragment(R.layout.fragment_detail_list), DetailVi
         val fromBundle = DetailListFragmentArgs.fromBundle(requireArguments())
         photosetId = fromBundle.photosetId
         presenter.getPhotos(photosetId)
-        showLoadingIndicator();
+        showLoadingIndicator()
         binding.swipeRefresh.setOnRefreshListener { onRefresh() }
     }
 

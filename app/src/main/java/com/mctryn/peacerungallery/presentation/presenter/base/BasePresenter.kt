@@ -33,7 +33,7 @@ abstract class BasePresenter<View : BaseView> : MvpPresenter<View>() {
         preloadImage(linkList)
     }
 
-    fun preloadImage(imageLinks: List<String>) {
+    private fun preloadImage(imageLinks: List<String>) {
         prepareFlowable(imageLinks)?.let { disposal.add(it) }
     }
 

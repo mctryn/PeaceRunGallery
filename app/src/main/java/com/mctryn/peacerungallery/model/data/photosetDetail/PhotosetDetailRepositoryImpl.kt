@@ -5,7 +5,6 @@ import com.mctryn.peacerungallery.model.data.photosetDetail.contarct.PhotosetDet
 import com.mctryn.peacerungallery.model.data.photosetDetail.local.PhotosetDetailLocal
 import com.mctryn.peacerungallery.model.data.photosetDetail.remote.PhotoItem
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
